@@ -2,8 +2,11 @@
 # along with matplotlib
 import networkx as nx
 import matplotlib.pyplot as plt
-   
-  
+#import matplotlib.animation.FuncAnimation
+import random
+import time
+
+
 # Defining a Class
 class GraphVisualization:
    
@@ -19,7 +22,7 @@ class GraphVisualization:
     def addEdge(self, a, b):
         temp = [a, b]
         self.visual.append(temp)
-          
+
     # In visualize function G is an object of
     # class Graph given by networkx G.add_edges_from(visual)
     # creates a graph with a given list
@@ -29,16 +32,19 @@ class GraphVisualization:
         G = nx.Graph()
         G.add_edges_from(self.visual)
         nx.draw_networkx(G)
+		#ani = FuncAnimation(fig=G, func=animate, frames=range(len(alphabet)), interval=500, repeat=True)
         plt.show()
   
 # Driver code
 
 G = GraphVisualization()
-G.addEdge(0, 2)
-G.addEdge(1, 2)
-G.addEdge(1, 3)
-G.addEdge(5, 3)
-G.addEdge(3, 4)
-G.addEdge(1, 0)
-G.addEdge(4,0)
-G.visualize()
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXZ"
+
+for k in range(0,len(alphabet)):
+	
+	first_random = random.choice(alphabet)
+	alphabet.replace(first_random,'')	
+	second_random = random.choice(alphabet)
+	G.addEdge(first_random,second_random)
+
+G.visualize()	
