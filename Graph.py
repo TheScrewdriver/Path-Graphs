@@ -2,7 +2,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 #import matplotlib.animation.FuncAnimation
 import random
-import string
 
 # Defining a Class
 class GraphVisualization:
