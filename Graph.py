@@ -35,6 +35,7 @@ def replace(character,new_character,string):
 			L.append(k)
 	for k in range(len(L)):
 		string_list[L[k]] == new_character
+	string = str(string_list)
 
 # Driver code
 
