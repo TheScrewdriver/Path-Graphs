@@ -1,20 +1,13 @@
-# First networkx library is imported 
-# along with matplotlib
 import networkx as nx
 import matplotlib.pyplot as plt
 #import matplotlib.animation.FuncAnimation
 import random
-import time
-
 
 # Defining a Class
 class GraphVisualization:
    
     def __init__(self):
           
-        # visual is a list which stores all 
-        # the set of edges that constitutes a
-        # graph
         self.visual = []
           
     # addEdge function inputs the vertices of an
@@ -26,15 +19,23 @@ class GraphVisualization:
     # In visualize function G is an object of
     # class Graph given by networkx G.add_edges_from(visual)
     # creates a graph with a given list
-    # nx.draw_networkx(G) - plots the graph
-    # plt.show() - displays the graph
     def visualize(self):
         G = nx.Graph()
         G.add_edges_from(self.visual)
         nx.draw_networkx(G)
 		#ani = FuncAnimation(fig=G, func=animate, frames=range(len(alphabet)), interval=500, repeat=True)
         plt.show()
-  
+
+def replace(character,new_character,string):
+
+	L = []
+	string_list = list(string)
+	for k in range(len(string_list)):
+		if (string_list[k] == character):
+			L.append(k)
+	for k in range(len(L)):
+		string_list[L[k]] == new_character
+
 # Driver code
 
 G = GraphVisualization()
@@ -42,9 +43,10 @@ alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXZ"
 
 for k in range(0,len(alphabet)):
 	
-	first_random = random.choice(alphabet)
-	alphabet.replace(first_random,'')	
-	second_random = random.choice(alphabet)
+	alphabet_temp = alphabet
+	first_random = random.choice(alphabet_temp)
+	replace(first_random,'',alphabet_temp)
+	second_random = random.choice(alphabet_temp)
 	G.addEdge(first_random,second_random)
 
 G.visualize()	
