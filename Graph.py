@@ -2,6 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 #import matplotlib.animation.FuncAnimation
 import random
+import string
 
 # Defining a Class
 class GraphVisualization:
@@ -26,17 +27,6 @@ class GraphVisualization:
 		#ani = FuncAnimation(fig=G, func=animate, frames=range(len(alphabet)), interval=500, repeat=True)
         plt.show()
 
-def replace(character,new_character,string):
-
-	L = []
-	string_list = list(string)
-	for k in range(len(string_list)):
-		if (string_list[k] == character):
-			L.append(k)
-	for k in range(len(L)):
-		string_list[L[k]] == new_character
-	string = str(string_list)
-
 # Driver code
 
 G = GraphVisualization()
@@ -46,7 +36,7 @@ for k in range(0,len(alphabet)):
 	
 	alphabet_temp = alphabet
 	first_random = random.choice(alphabet_temp)
-	replace(first_random,'',alphabet_temp)
+	alphabet_temp = alphabet_temp.replace(first_random,"")
 	second_random = random.choice(alphabet_temp)
 	G.addEdge(first_random,second_random)
 
