@@ -32,6 +32,7 @@ for k in range(maximum_edges):
 	alphabet_temp.remove(first_random)
 	second_random = random.choice(alphabet_temp)
 	alphabet_temp.append(first_random)
+	
 	if ([first_random, second_random] not in list(G.edges)):
 		G.add_edge(first_random, second_random, weight = 0)
 
@@ -44,7 +45,7 @@ nx.draw_networkx_nodes(G, pos, node_size = 5000, node_color = "tab:green")
 ##Create lists of edges and their weight##
 
 edges = list(G.edges)
-weight_edge = np.zeros(len(edges), dtype = int)
+weight_edge = np.zeros([len(edges), 2], dtype = int)
 
 ##Colorize active edges##
 
@@ -54,7 +55,7 @@ def color_edges(active):
     G,
     pos,
     edgelist = edges,
-    width=8,
+    width=7,
     alpha=1,
     edge_color="tab:blue",
 	)
@@ -63,10 +64,12 @@ def color_edges(active):
     G,
     pos,
     edgelist=active,
-    width=8,
+    width=7,
     alpha=1,
     edge_color="tab:red",
 	)
+
+##Update animation##
 	
 def update(frame):
 
@@ -89,16 +92,17 @@ def update(frame):
 			active.append([edges[k][0],edges[k][1]])
 
 	color_edges(active)	
-	labels = nx.get_edge_attributes(G, 'weight')
-	nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+	elabels = nx.get_edge_attributes(G, 'weight')
+	nx.draw_networkx_edge_labels(G, pos, edge_labels = elabels)
 	
 	##Increase or Decrease randomly an edge weight##
 
-	weight_edge[chosen] = random.choice([weight_edge[chosen] - 1, weight_edge[chosen] + 1])
+	weight_edge[chosen][0] = random.choice([weight_edge[chosen][0] - 1, weight_edge[chosen][0] + 1])
 	
 	#time.sleep(1)
 
 ##Trigger the animation##
 
 anim = animation.FuncAnimation(fig, update, frames=10, interval=1000, repeat=True)
+
 plt.show()
