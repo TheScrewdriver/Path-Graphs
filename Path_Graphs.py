@@ -76,7 +76,7 @@ global pos
 global nodes_names
 global nodes_number
 
-nodes_number = 5 #max = 28
+nodes_number = 5  #max = 28
 
 ##Create Graph with its nodes##
 
@@ -120,7 +120,7 @@ def update(frame):
 	global pos
 	global nodes_number
 
-	chosen_edge = random.randint(0, len(weight_edge))
+	chosen_edge = random.randint(0, len(edges) - 1)
 	
 	##Clear edges labels##
 	
@@ -132,10 +132,10 @@ def update(frame):
 	for k in range(len(edges)):
 		
 		G.add_edge(edges[k][0], edges[k][1], weight = str(weight_edge[k]) + "/" + str(capacity_edge[k]))
-		#if (k == chosen_edge):
-		#	active.append([edges[k][0],edges[k][1]])
+		if (k == chosen_edge):
+			active.append([edges[k][0],edges[k][1]])
 
-	#color_edges(active)
+	color_edges(active)
 	
 	elabels = nx.get_edge_attributes(G, 'weight')
 	nx.draw_networkx_edge_labels(G, pos, edge_labels = elabels)
@@ -157,7 +157,7 @@ def update(frame):
 	
 	##Increase or Decrease randomly an edge weight##
 
-	#weight_edge[chosen_edge][0] = random.choice([weight_edge[chosen_edge][0] - 1, weight_edge[chosen_edge][0] + 1])
+	#weight_edge[chosen_edge][0] += random.randint(-1, 1)
 	
 	#time.sleep(1)
 
